@@ -73,7 +73,7 @@
 <!-- illere gore donorler buraya basiliyor.. js basiyor.. -->
 <div class="row">
     <div class="col-sm-12">
-        <table class="table table-bordered" id="illereGoreDonorAlani"></table>
+        <table class="table table-bordered" id="hizli_arama_sonuclari"></table>
     </div>
 </div>
 

@@ -11,12 +11,10 @@
                 <h4 class="panel-title">Lütfen giriş yapınız</h4>
             </div>
             <div class="panel-body">
-        		<form action="" method="POST">
-                    <input type="text" name="username" placeholder="Kullanıcı Adı" class="form-control">
-                    <input type="password" name="password" placeholder="Şifre" class="form-control">
-                    <br>
-                    <button type="submit" class="btn btn-success">Giriş</button>
-                </form>
+                <input type="text" name="email" placeholder="Email" class="form-control" id="login_email">
+                <input type="password" name="password" placeholder="Şifre" class="form-control" id="login_sifre">
+                <br>
+                <button type="submit" class="btn btn-success" onclick="login_form.login()">Giriş</button>
             </div>
         </div>
 	</div>

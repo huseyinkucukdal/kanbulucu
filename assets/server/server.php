@@ -30,7 +30,7 @@ switch($job)
 		endif;
 
 	break;
-// bagisi database'e yazdir//
+// bagisi database'e yazdir
 	case "bagiskaydet":
 		$adsoyad 		= stripcslashes($_POST["adsoyad"]);
 		$il 			= stripcslashes($_POST["il"]);
@@ -65,6 +65,23 @@ switch($job)
 		echo json_encode($ileGoreIlceler);
 		
 	break;
+// illere gore ilceleri database'den al.... arama formu
+	case "ileGoreIlceleriGetirArama":
+		$il_id = $_POST['il_id'];
+		$ileGoreIlceler = array();
+		
+		foreach($db->query("SELECT * FROM ilceler WHERE il_id='$il_id'") as $ilce):
+			$ilcebilgileri = array(
+					id => $ilce['id'],
+					baslik => $ilce['baslik']
+				);
+
+			$ileGoreIlceler[]=$ilcebilgileri;
+		endforeach;
+
+		echo json_encode($ileGoreIlceler);
+		
+	break;
 // uygun ildeki donorleri databse'den al
 	case "uygunIleGoreDonorler":
 		$il_id = $_POST['il_id'];
@@ -72,19 +89,54 @@ switch($job)
 		$ilanaGoreDonorler = array();
 		foreach($db->query("SELECT * FROM donorler WHERE sehir='$il_id'") as $donor):
 			$ilcebilgileri = array(
-					adsoyad => $donor['adsoyad'],
-					ilce    => $donor['ilce'],
-					eposta  => $donor['eposta'],
-					telefon => $donor['telefon'],
+					adsoyad 	  => $donor['adsoyad'],
+					ilce    	  => $donor['ilce'],
+					eposta  	  => $donor['eposta'],
+					telefon 	  => $donor['telefon'],
 					telefongoster => $donor['telefonumugoster'],
 				);
 
 			$ilanaGoreDonorler[]=$ilcebilgileri;
 		endforeach;
-//		print_r($ilanaGoreDonorler);
 		echo json_encode($ilanaGoreDonorler);
 		
 	break;
+
+// hizli arama yaptir
+	case "hizliarama":
+		$il 	  = $_POST['il'];
+		$ilce     = $_POST['ilce'];
+		$kangrubu = $_POST['kangrubu'];
+
+		$ilanaGoreDonorler = array();
+		foreach($db->query("SELECT * FROM donorler WHERE sehir='$il' AND kangrubu='$kangrubu' AND ilce='$ilce'") as $donor):
+			$donorbilgileri = array(
+					adsoyad  => $donor['adsoyad'],
+					sehir 	 => $donor['sehir'],
+					ilce     => $donor['ilce'],
+					kangrubu => $donor['kangrubu'],
+					telefongoster => $donor['telefonumugoster'],
+					telefon => $donor['telefon']
+				);
+
+			$ilanaGoreDonorler[]=$donorbilgileri;
+		endforeach;
+		echo json_encode($ilanaGoreDonorler);	
+	break;
+// login form
+	case "login":
+		$eposta   = stripcslashes($_POST['eposta']);
+		$sifre    = stripcslashes($_POST['sifre']);
+		$donor  = $db ->query("SELECT * FROM donorler WHERE eposta='$eposta' AND sifre='$sifre'")->fetch();
+		$donorInfo = array(
+				adsoyad => $donor[adsoyad]
+			);
+			echo json_encode($donorInfo);
+	break;
+
+
+
+
 } // switch ends here
 
 

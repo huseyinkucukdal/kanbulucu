@@ -12,6 +12,7 @@
 				<div class="col-sm-12">
 					<a href="?page=home">
 						<img src="assets/images/logo.svg" width="200" />
+						<a href="?page=common&subpage=login" style="float:right;"><h4>login</h4></a>
 					</a>
 				</div>
 			</div>

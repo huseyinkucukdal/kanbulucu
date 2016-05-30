@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col-sm-6">
          <strong>Şehir :</strong>
-         <select name="sehir" id="iller" onchange="ileGoreIlceleriGetir()" class="form-control">
+         <select name="sehir" id="iller" onchange="ileGoreIlceleriGetir('ilceler','iller')" class="form-control">
              <?php iller($db); ?> <!-- functions.php tarafindan dolduruluyor -->
          </select>
          <br>
