@@ -41,11 +41,20 @@ switch($job)
 		$sifre  		= stripcslashes($_POST["sifre"]);
 		$tgoster 		= stripcslashes($_POST["tgoster"]);
 
-		if ($db->exec("INSERT INTO donorler SET adsoyad='$adsoyad', sehir='$il', ilce='$ilce', kangrubu='$kangrubu', telefon='$telefon',eposta='$eposta',sifre='$sifre',telefonumugoster='$tgoster'")):
-			echo $db->lastInsertId();
-		else:
-			echo 0;
-		endif;
+
+		$donor     = $db ->query("SELECT * FROM donorler WHERE eposta='$eposta'");
+
+		if ($donor->rowCount() > 0) {
+			echo 2;
+		}
+		else
+		{
+			if ($db->exec("INSERT INTO donorler SET adsoyad='$adsoyad', sehir='$il', ilce='$ilce', kangrubu='$kangrubu', telefon='$telefon',eposta='$eposta',sifre='$sifre',telefonumugoster='$tgoster'")):
+				echo $db->lastInsertId();
+			else:
+				echo 0;
+			endif;	
+		}
 
 	break;
 // illere gore ilceleri database'den al
@@ -126,7 +135,7 @@ switch($job)
 // login form
 	case "login":
 		$eposta   = stripcslashes($_POST['eposta']);
-		$sifre    = stripcslashes($_POST['sifre']);
+		$sifre    = stripcslashes($_POST['sifre']); // ARA : best solution for mysql injection PHP
 		$donor  = $db ->query("SELECT * FROM donorler WHERE eposta='$eposta' AND sifre='$sifre'")->fetch();
 		$donorInfo = array(
 				adsoyad => $donor[adsoyad]

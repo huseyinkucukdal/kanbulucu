@@ -19,7 +19,7 @@
         <select name="sehir" id="iller" onchange="ileGoreIlceleriGetir('ilceler','iller')" class="form-control">
             <?php iller($db); ?> <!-- functions.php tarafindan dolduruluyor -->
         </select>
-        <br />
+        <br>
     </div>
     <div class="col-sm-6">
         <strong>İlçe :</strong>
@@ -57,9 +57,9 @@
         <input type="password" name="" id="sifreTekrar" class="form-control">
     </div>
 </div>
-   <hr>
-   <button class="btn btn-danger btn-block" onclick="kan_bagisla.ilan.save()">Kan Bağışla</button>
 
 
 
 
+
+        

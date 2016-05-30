@@ -35,3 +35,7 @@
         <td><?php echo $donor[eposta]; ?></td>
     </tr>
 </table>
+<br />
+<div>
+    <a href="?page=kan-bagisla&subpage=donor-update&profilid=60">Profilimi düzenle</a>        
+</div>

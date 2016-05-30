@@ -130,14 +130,27 @@ var kan_bagisla = {
 				tgoster		  : (document.getElementById("telefonugoster").checked)?"1":"0",
 			};
 
-			var isFormOk = validateForm(params);
+			//var isFormOk = validateForm(params);
+			isFormOk = true;
 			if (isFormOk)
 			{
 				if (params.sifre == params.sifreTekrar){
+
+
+
+
+
+
+
+
 					$.post('assets/server/server.php', params, function(resp){
 						if (resp == 0)
 						{
 							alert("HATA : ilan kaydı gerçekleştirilemedi!");
+						}
+						else if (resp == 2)
+						{
+							alert("Bu email adresi daha once asldknaskjdn");
 						}
 						else
 						{
@@ -197,7 +210,7 @@ function validateForm(params)
 	}
 	for (var i = 0; i < lngt; i++)
 	{
-		console.log(params[Object.keys(params)[i]]);
+//		console.log(params[Object.keys(params)[i]]);
 		if (params[Object.keys(params)[i]] == "" || params[Object.keys(params)[i]] == null)
 		{			
 			return false;
